@@ -14,6 +14,8 @@ const TodoType = new GraphQLObjectType({
     title: { type: GraphQLString }
   })
 });
+
+
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: () => ({
