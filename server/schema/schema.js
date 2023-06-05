@@ -3,7 +3,8 @@ const {
   GraphQLObjectType,
   GraphQLID,
   GraphQLString,
-  GraphQLSchema
+  GraphQLSchema,
+  GraphQLList
 } = require('graphql');
 
 //todos Typeo
@@ -19,6 +20,12 @@ const TodoType = new GraphQLObjectType({
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: () => ({
+    todos:{
+      type:new GraphQLList(TodoType),
+        resolve(parent,args){
+          return todos
+        }
+    },
     todo: {
       type: TodoType,
       args: { id: { type: GraphQLID } },
