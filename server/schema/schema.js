@@ -1,4 +1,3 @@
-const { todos } = require('../data.js');
 const {
   GraphQLObjectType,
   GraphQLID,
@@ -6,6 +5,9 @@ const {
   GraphQLSchema,
   GraphQLList
 } = require('graphql');
+
+//Mongoose models
+const Todo = require('../models/Todo.js')
 
 //todos Typeo
 const TodoType = new GraphQLObjectType({
@@ -20,17 +22,17 @@ const TodoType = new GraphQLObjectType({
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: () => ({
-    todos:{
-      type:new GraphQLList(TodoType),
-        resolve(parent,args){
-          return todos
-        }
+    todos: {
+      type: new GraphQLList(TodoType),
+      resolve(parent, args) {
+        return Todo.find();
+      }
     },
     todo: {
       type: TodoType,
       args: { id: { type: GraphQLID } },
       resolve(parent, args) {
-        return todos.find(todo => todo.id === args.id);
+        return Todo.findById(args.id);
       }
     }
   })
