@@ -3,7 +3,8 @@ const {
   GraphQLID,
   GraphQLString,
   GraphQLSchema,
-  GraphQLList
+  GraphQLList,
+  GraphQLNonNull
 } = require('graphql');
 
 //Mongoose models
@@ -17,7 +18,6 @@ const TodoType = new GraphQLObjectType({
     title: { type: GraphQLString }
   })
 });
-
 
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
@@ -38,6 +38,26 @@ const RootQuery = new GraphQLObjectType({
   })
 });
 
+// Mutations
+const mutation = new GraphQLObjectType({
+  name: 'Mutation',
+  fields: {
+    addTodo: {
+      type: TodoType,
+      args: {
+        title: { type: GraphQLNonNull(GraphQLString) },
+      },
+      resolve(parent, args) {
+        const todo = new Todo({
+          title: args.title
+        });
+        return todo.save();
+      }
+    }
+  }
+})
+
 module.exports = new GraphQLSchema({
-  query: RootQuery
+  query: RootQuery,
+  mutation
 })
