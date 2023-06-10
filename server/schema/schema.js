@@ -42,6 +42,7 @@ const RootQuery = new GraphQLObjectType({
 const mutation = new GraphQLObjectType({
   name: 'Mutation',
   fields: {
+    // Add todo
     addTodo: {
       type: TodoType,
       args: {
@@ -52,6 +53,16 @@ const mutation = new GraphQLObjectType({
           title: args.title
         });
         return todo.save();
+      }
+    },
+    // Delete Todo
+    deleteTodo: {
+      type: TodoType,
+      args: {
+        id: { type: GraphQLNonNull(GraphQLID) },
+      },
+      resolve(parent, args) {
+        return Todo.findByIdAndRemove(args.id)
       }
     }
   }
