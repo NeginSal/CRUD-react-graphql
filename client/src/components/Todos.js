@@ -1,5 +1,5 @@
 import { gql, useQuery } from '@apollo/client';
-import  Todo  from './Todo'
+import Todo from './Todo'
 
 const GET_TODOS = gql`
  query getTodos {
@@ -8,7 +8,8 @@ const GET_TODOS = gql`
      title
     }
   }
-`
+`;
+
 const Todos = () => {
   const { data, loading, error } = useQuery(GET_TODOS);
 
@@ -22,6 +23,13 @@ const Todos = () => {
           {data.todos.map(todo => (<Todo key={todo.id} todo={todo} />))}
         </div>
       )}
+      {/* {!loading && !error && (
+        <div>
+          {data.todos.map((todo) => (
+            <Todo key={todo.id} todo={todo} />
+          ))}
+        </div>
+      )} */}
     </>
   );
 }
