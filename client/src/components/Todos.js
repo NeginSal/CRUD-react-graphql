@@ -1,14 +1,6 @@
-import { gql, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
+import { GET_TODOS } from '../query/TodoQueries';
 import Todo from './Todo'
-
-const GET_TODOS = gql`
- query getTodos {
-   todos{
-     id
-     title
-    }
-  }
-`;
 
 const Todos = () => {
   const { data, loading, error } = useQuery(GET_TODOS);
