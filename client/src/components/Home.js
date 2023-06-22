@@ -1,34 +1,21 @@
-import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 import Todos from './Todos'
 import AddTodo from './AddTodo';
 
-const cache = new InMemoryCache({
-  typePolicies: {
-    Query: {
-      fields: {
-        todos: {
-          merge(existing, incoming) {
-            return incoming
-          }
-        }
-      }
-    }
-  }
-});
-
-const client = new ApolloClient({
-  uri: 'http://localhost:5000/graphql',
-  cache,
-})
-
 const Home = () => {
   return (
-    <ApolloProvider client={client}>
+    <>
+      <blockquote className="text-2xl font-semibold italic text-center text-blue-500 my-10">
+        <span className="mx-2 before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-pink-400 relative inline-block">
+          <span className="relative text-white "> CRUD App </span>
+        </span>
+        with React Hooks
+      </blockquote>
       <div>
         <Todos />
         <AddTodo />
       </div>
-    </ApolloProvider>
+    </>
+
   );
 }
 

@@ -3,7 +3,7 @@ import { DELETE_TODO } from "../mutaiotion/TodoMutation";
 import { GET_TODOS } from "../query/TodoQueries";
 
 const Todo = ({ todo }) => {
-  
+
   const [deleteTodo] = useMutation(DELETE_TODO, {
     variables: { id: todo.id },
     update(cache, { data: { deleteTodo } }) {

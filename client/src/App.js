@@ -1,23 +1,42 @@
+import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 import React from 'react';
 import { Routes, Route } from "react-router-dom";
 import Home from './components/Home';
 // import EditTodo from './components/EditTodo';
 import AddTodo from './components/AddTodo';
+import TodoDetails from './components/TodoDetails';
 
 const App = () => {
+  const cache = new InMemoryCache({
+    typePolicies: {
+      Query: {
+        fields: {
+          todos: {
+            merge(existing, incoming) {
+              return incoming
+            }
+          }
+        }
+      }
+    }
+  });
+  
+  const client = new ApolloClient({
+    uri: 'http://localhost:5000/graphql',
+    cache,
+  })
+
   return (
     <>
-      <blockquote className="text-2xl font-semibold italic text-center text-blue-500 my-10">
-        <span className="mx-2 before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-pink-400 relative inline-block">
-          <span className="relative text-white "> CRUD App </span>
-        </span>
-        with React Hooks
-      </blockquote>
-      <Routes>
-        <Route path='/' element={<Home />} />
-        {/* <Route path='/edit/:id' element={<EditTodo/>} /> */}
-        <Route path='/create' element={< AddTodo />} />
-      </Routes>
+      <ApolloProvider client={client}>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          {/* <Route path='/edit/:id' element={<EditTodo/>} /> */}
+          <Route path='/create' element={< AddTodo />} />
+          <Route path='/todos/:id' element={<TodoDetails />} />
+        </Routes>
+      </ApolloProvider>
+
     </>
   );
 }

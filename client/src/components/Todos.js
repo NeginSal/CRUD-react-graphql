@@ -1,6 +1,7 @@
 import { useQuery } from '@apollo/client';
 import { GET_TODOS } from '../query/TodoQueries';
-import Todo from './Todo'
+import Todo from './Todo';
+import { Link } from 'react-router-dom';
 
 const Todos = () => {
   const { data, loading, error } = useQuery(GET_TODOS);
@@ -12,16 +13,13 @@ const Todos = () => {
     <>
       {!loading && !error && (
         <div>
-          {data.todos.map(todo => (<Todo key={todo.id} todo={todo} />))}
-        </div>
-      )}
-      {/* {!loading && !error && (
-        <div>
-          {data.todos.map((todo) => (
-            <Todo key={todo.id} todo={todo} />
+          {data.todos.map(todo => (
+            <Link to={`/todos/${todo.id}`} key={todo.id}>
+              <Todo todo={todo} />
+            </Link>
           ))}
         </div>
-      )} */}
+      )}
     </>
   );
 }
