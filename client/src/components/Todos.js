@@ -14,9 +14,7 @@ const Todos = () => {
       {!loading && !error && (
         <div>
           {data.todos.map(todo => (
-            <Link to={`/todos/${todo.id}`} key={todo.id}>
-              <Todo todo={todo} />
-            </Link>
+            <Todo todo={todo} />
           ))}
         </div>
       )}

@@ -18,4 +18,13 @@ const DELETE_TODO = gql`
   }
 `;
 
-export { ADD_TODO, DELETE_TODO }
+const EDIT_TODO = gql`
+  mutation EditTodo($id: ID! $title: String!) {
+    EditTodo(id: $id title: $title) {
+      id
+      title
+    }
+  }
+`;
+
+export { ADD_TODO, DELETE_TODO, EDIT_TODO }
