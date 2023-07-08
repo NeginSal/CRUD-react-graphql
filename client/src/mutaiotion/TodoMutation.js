@@ -19,8 +19,8 @@ const DELETE_TODO = gql`
 `;
 
 const EDIT_TODO = gql`
-  mutation EditTodo($id: ID! $title: String!) {
-    EditTodo(id: $id title: $title) {
+  mutation editTodo($id: ID! $title: String!) {
+    editTodo(id: $id title: $title) {
       id
       title
     }

@@ -1,9 +1,12 @@
 import { useMutation } from "@apollo/client";
 import { DELETE_TODO } from "../mutaiotion/TodoMutation";
 import { GET_TODOS } from "../query/TodoQueries";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 
 const Todo = ({ todo }) => {
+
+  const navigate = useNavigate();
   const [deleteTodo] = useMutation(DELETE_TODO, {
     variables: { id: todo.id },
     update(cache, { data: { deleteTodo } }) {
@@ -22,9 +25,20 @@ const Todo = ({ todo }) => {
       </Link>
 
       <button onClick={deleteTodo}>Delete</button>
-      <Link to={`/edit/${todo.id}`}>
+      <button  onClick={() => navigate(`/edit/${todo.id}`)}>
+        Edit
+      </button>
+     
+      {/* <button component={EditTodo} to={`/edit/${todo.id}`}>EDIT</button> */}
+      {/* <Link to={`/edit/${todo.id}`} key={todo.id}>
         <button>Edit</button>
-      </Link>
+      </Link> */}
+
+      {/* <button className={onClick={() => {
+        updateTodo({ variables: { id: todo.id } }); */}
+
+        {/* <EditTodo todo={todo}/> */ }
+        {/* component={Link} to={`/${data}`} */ }
     </div>
   );
 }
