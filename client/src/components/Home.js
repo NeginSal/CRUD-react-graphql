@@ -8,9 +8,9 @@ const Home = () => {
         <span className="mx-2 before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-pink-400 relative inline-block">
           <span className="relative text-white "> CRUD App </span>
         </span>
-        with React Hooks
+        with React & GraphQL
       </blockquote>
-      <div>
+      <div className="max-w-xl pb-8 mx-auto px-5 bg-slate-100">
         <Todos />
         <AddTodo />
       </div>

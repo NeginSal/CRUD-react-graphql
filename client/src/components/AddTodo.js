@@ -25,7 +25,7 @@ const AddTodo = () => {
   }
   return (
     <form onSubmit={handleSubmit}>
-      <div className='flex flex-col justify-center items-center sm:flex-row sm:justify-evenly'>
+      <div className='flex flex-col items-center sm:flex-row sm:space-x-1 sm:justify-center'>
         <div className='mb-2'>
           <input
             className='px-3 py-1 rounded-full border border-gray-600'

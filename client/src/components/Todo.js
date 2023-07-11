@@ -19,26 +19,24 @@ const Todo = ({ todo }) => {
   });
 
   return (
-    <div>
-      <Link to={`/todos/${todo.id}`} key={todo.id}>
-        <p>{todo.title}</p>
-      </Link>
-
-      <button onClick={deleteTodo}>Delete</button>
-      <button  onClick={() => navigate(`/edit/${todo.id}`)}>
-        Edit
-      </button>
-     
-      {/* <button component={EditTodo} to={`/edit/${todo.id}`}>EDIT</button> */}
-      {/* <Link to={`/edit/${todo.id}`} key={todo.id}>
-        <button>Edit</button>
-      </Link> */}
-
-      {/* <button className={onClick={() => {
-        updateTodo({ variables: { id: todo.id } }); */}
-
-        {/* <EditTodo todo={todo}/> */ }
-        {/* component={Link} to={`/${data}`} */ }
+    <div className='flex justify-between border-b-4'>
+      <div className="my-3">
+        <Link to={`/todos/${todo.id}`} key={todo.id}>
+          {todo.title}
+        </Link>
+      </div>
+      <div>
+        <button
+          className='my-3 px-2 py-1 text-red-800 
+         hover:bg-red-400 hover:rounded-md hover:border hover:border-red-800'
+          onClick={deleteTodo}>Delete</button>
+        <button
+          className='mx-2 my-3 px-2 py-1 text-green-800
+         hover:bg-green-400 hover:rounded-md hover:border hover:border-green-800'
+          onClick={() => navigate(`/edit/${todo.id}`)}>
+          Edit
+        </button>
+      </div>
     </div>
   );
 }

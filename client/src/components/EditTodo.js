@@ -15,12 +15,12 @@ const EditTodo = () => {
     variables: { id }
   });
   const [title, setTitle] = useState("")
-  
-  useEffect(()=>{
-    if(data){
+
+  useEffect(() => {
+    if (data) {
       setTitle(data.todo.title || "")
     }
-  },[data])
+  }, [data])
 
 
   const [editTodo] = useMutation(EDIT_TODO, {
@@ -35,26 +35,36 @@ const EditTodo = () => {
     navigate('/')
   }
 
+  const goHome = () => {
+    navigate('/')
+  }
+
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <div className='flex flex-col justify-center items-center sm:flex-row sm:justify-evenly'>
+    <div className="flex items-center justify-center">
+      <form onSubmit={handleSubmit} className='bg-slate-100 p-10 mt-10 rounded-md'>
+        <div className='flex flex-col items-center sm:flex-row sm:space-x-1 sm:justify-center'>
           <div className='mb-2'>
             <input
-              className='px-3 py-1 rounded-full border border-gray-600'
+              className='my-2 px-5 py-1 rounded-full border border-gray-600'
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               required
               type="text" placeholder="Name" />
           </div>
-          <div className='mb-2'>
-            <button className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-3 rounded-full">
-              Edit
+          <div className="flex my-2">
+            <button
+              className='text-white mx-1 px-5 py-1 rounded-full bg-blue-500 hover:bg-blue-700'>
+              EDIT
+            </button>
+            <button
+              onClick={goHome}
+              className='text-white mx-1 px-5 py-1 rounded-full bg-blue-500 hover:bg-blue-700'>
+              CANCEL
             </button>
           </div>
         </div>
       </form>
-    </>
+    </div>
   );
 }
 

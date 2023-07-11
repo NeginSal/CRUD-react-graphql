@@ -11,9 +11,9 @@ const Todos = () => {
   return (
     <>
       {!loading && !error && (
-        <div>
+        <div className='py-5'>
           {data.todos.map(todo => (
-            <Todo todo={todo} key={todo.id}/>
+            <Todo todo={todo} key={todo.id} />
           ))}
         </div>
       )}
