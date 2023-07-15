@@ -4,7 +4,7 @@ This is a simple CRUD-React-GraphQl app.
 
 You can do crud operation (create, read, update, delete).
 
-It has two fields: name & username. You can delete, edit each item or add a new one.
+It has one field: **title**. You can delete, edit each item or add a new one.
 
 ![CRUD-React-GraphQL](https://github.com/NeginSal/CRUD-react-graphql/assets/44671121/4adef1a6-f294-479f-be90-d4d0d4fe8952)
 
@@ -18,7 +18,7 @@ This app uses:
 - Tailwind
 
 
-## Scripts for running this project: pencil:
+## Scripts for running this project :pencil:
 You have two main folder **server** and **clients**, to see the project in your browser, you should run these two commands:
 
 ### 1. `node index.js`
