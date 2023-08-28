@@ -34,4 +34,4 @@ You may also see any lint errors in the console.
 
 ## Learn More :open_book:
 
-You can learn more about this project in this link [](...).
+You can learn more about this project in this link [React + GraphQL CRUD](https://dev.to/negin/react-graphql-crud-1ma8).
